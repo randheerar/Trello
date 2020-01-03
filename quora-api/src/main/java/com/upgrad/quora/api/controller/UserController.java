@@ -48,13 +48,15 @@ public class UserController {
         userEntity.setUserName(signupUserRequest.getUserName());
         userEntity.setEmail(signupUserRequest.getEmailAddress());
         userEntity.setPassword(signupUserRequest.getPassword());
+        userEntity.setSalt("1235qweqwer");
         userEntity.setCountry(signupUserRequest.getCountry());
         userEntity.setAboutme(signupUserRequest.getAboutMe());
         userEntity.setDob(signupUserRequest.getDob());
-        userEntity.setRole("nonadmin");
+        userEntity.setRole("admin");
         userEntity.setContactnumber(signupUserRequest.getContactNumber());
         final UserEntity createdUserEntity = userBusinessService.signup(userEntity);
-        SignupUserResponse userResponse = new SignupUserResponse().id(createdUserEntity.getUuid()).status("USER SUCCESSFULLY REGISTERED");
+        SignupUserResponse userResponse = new SignupUserResponse().id(createdUserEntity.getUuid()).status("REGISTERED");
+
         return new ResponseEntity<SignupUserResponse>(userResponse, HttpStatus.CREATED);
     }
 
