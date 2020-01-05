@@ -27,11 +27,9 @@ public class AdminService {
         if(userAuthEntity == null){
             throw new AuthorizationFailedException("ATHR-001","User has not signed in");
         }
-
         if(userAuthEntity.getLogoutAt() != null){
             throw new AuthorizationFailedException( "ATHR-002", "User is signed out");
         }
-
         if(!userAuthEntity.getUserEntity().getRole().equals( "admin" )){
             throw new AuthorizationFailedException( "ATHR-003","Unauthorized Access, Entered user is not an admin" );
         }
