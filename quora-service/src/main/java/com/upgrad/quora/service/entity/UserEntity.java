@@ -1,7 +1,6 @@
 package com.upgrad.quora.service.entity;
 
 import org.apache.commons.lang3.builder.*;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +12,7 @@ import java.io.Serializable;
         @NamedQuery(name = "userByEmail", query = "select u from UserEntity u where u.email = :email"),
         @NamedQuery(name = "userByUserName", query = "select u from UserEntity u where u.username = :username"),
         @NamedQuery(name="userByUserId", query = "select u from UserEntity u where u.uuid=:userId")
-        })
+})
 public class UserEntity implements Serializable {
 
     @Id
@@ -130,12 +129,12 @@ public class UserEntity implements Serializable {
         this.country = country;
     }
 
-    public String getAboutme() {
+    public String getAboutMe() {
         return aboutme;
     }
 
-    public void setAboutme(String aboutme) {
-        this.aboutme = aboutme;
+    public void setAboutMe(String aboutMe) {
+        this.aboutme = aboutMe;
     }
 
     public String getDob() {
