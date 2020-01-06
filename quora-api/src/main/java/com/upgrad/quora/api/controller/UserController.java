@@ -11,7 +11,6 @@ import com.upgrad.quora.service.exception.AuthenticationFailedException;
 import com.upgrad.quora.service.exception.SignOutRestrictedException;
 import com.upgrad.quora.service.exception.SignUpRestrictedException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.UUID;
 
 @RestController
@@ -50,7 +48,7 @@ public class UserController {
         userEntity.setPassword(signupUserRequest.getPassword());
         userEntity.setSalt("1235qweqwer");
         userEntity.setCountry(signupUserRequest.getCountry());
-        userEntity.setAboutme(signupUserRequest.getAboutMe());
+        userEntity.setAboutMe(signupUserRequest.getAboutMe());
         userEntity.setDob(signupUserRequest.getDob());
         userEntity.setRole("admin");
         userEntity.setContactnumber(signupUserRequest.getContactNumber());
