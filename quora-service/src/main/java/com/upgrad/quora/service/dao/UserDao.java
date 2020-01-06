@@ -29,6 +29,22 @@ public class UserDao {
         }
     }
 
+    /**
+     * Delete a user by given id from the database.
+     *
+     * @param userId Id of the user to be deleted.
+     * @return User details which is to be deleted if exist in the DB else null.
+     */
+
+    public UserEntity deleteUser(final String userId) {
+
+        UserEntity deleteUser = getUserById(userId);
+        if (deleteUser != null) {
+            this.entityManager.remove(deleteUser);
+        }
+        return deleteUser;
+    }
+
     public UserEntity createUser(UserEntity userEntity) {
         entityManager.persist(userEntity);
         return userEntity;
