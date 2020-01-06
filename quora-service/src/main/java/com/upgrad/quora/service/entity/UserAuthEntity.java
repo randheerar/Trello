@@ -1,45 +1,52 @@
 package com.upgrad.quora.service.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "user_auth")
 @NamedQueries({
-        @NamedQuery(name = "userAuthByAccessToken", query = "select u from UserAuthEntity u where u.accessToken=:accessToken")
+        @NamedQuery(name = "userAuthByAccessToken", query = "select ut from UserAuthEntity ut where ut.accessToken = :accessToken ")
 })
+public class UserAuthEntity implements Serializable {
 
-public class UserAuthEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "uuid")
+    @NotNull
     @Size(max = 200)
     private String uuid;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "USER_ID")
+    @NotNull
     private UserEntity userEntity;
 
-    @Column(name = "access_token")
+    @Column(name = "ACCESS_TOKEN")
     @NotNull
     @Size(max = 500)
     private String accessToken;
 
-    @Column(name = "expires_at")
-    @NotNull
-    private ZonedDateTime expiresAt;
-
-    @Column(name = "login_at")
+    @Column(name = "LOGIN_AT")
     @NotNull
     private ZonedDateTime loginAt;
 
-    @Column(name = "logout_at")
+    @Column(name = "EXPIRES_AT")
+    @NotNull
+    private ZonedDateTime expiresAt;
+
+    @Column(name = "LOGOUT_AT")
     private ZonedDateTime logoutAt;
 
     public Integer getId() {
@@ -58,12 +65,12 @@ public class UserAuthEntity {
         this.uuid = uuid;
     }
 
-    public UserEntity getUserEntity() {
+    public UserEntity getUser() {
         return userEntity;
     }
 
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
+    public void setUser(UserEntity user) {
+        this.userEntity = user;
     }
 
     public String getAccessToken() {
@@ -74,20 +81,20 @@ public class UserAuthEntity {
         this.accessToken = accessToken;
     }
 
-    public ZonedDateTime getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(ZonedDateTime expiresAt) {
-        this.expiresAt = expiresAt;
-    }
-
     public ZonedDateTime getLoginAt() {
         return loginAt;
     }
 
     public void setLoginAt(ZonedDateTime loginAt) {
         this.loginAt = loginAt;
+    }
+
+    public ZonedDateTime getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(ZonedDateTime expiresAt) {
+        this.expiresAt = expiresAt;
     }
 
     public ZonedDateTime getLogoutAt() {

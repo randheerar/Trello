@@ -1,6 +1,6 @@
 package com.upgrad.quora.service.entity;
 
-import org.apache.commons.lang3.builder.ToStringExclude;
+import org.apache.commons.lang3.builder.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +10,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "users")
 @NamedQueries({
+        @NamedQuery(name = "userByEmail", query = "select u from UserEntity u where u.email = :email"),
+        @NamedQuery(name = "userByUserName", query = "select u from UserEntity u where u.username = :username"),
         @NamedQuery(name="userByUserId", query = "select u from UserEntity u where u.uuid=:userId")
         })
 public class UserEntity implements Serializable {
@@ -128,7 +130,7 @@ public class UserEntity implements Serializable {
         this.country = country;
     }
 
-    public String getAboutMe() {
+    public String getAboutme() {
         return aboutme;
     }
 
